@@ -11,9 +11,9 @@ import Head from 'next/head'
        </Head>
  
        <main>
-         <Header title="Welcome to my app!" />
+         <Header title="Pomodoro Timer" />
          <p className="description">
-           Get started by editing <code>pages/index.js</code>
+           Pomodoro Timer <code>pages/index.js</code>
          </p>
        </main>
  
