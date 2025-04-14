@@ -54,5 +54,18 @@ import Head from 'next/head'
          }
        `}</style>
      </div>
+     <script>
+       function startTimer() {
+         let time = 1500;
+         const display = document.getElementById("timer");
+         const interval = setInterval(() => {
+           let minutes = Math.floor(time / 60);
+           let seconds = time % 60;
+           display.innerHTML = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+           time--;
+           if (time < 0) clearInterval(interval);
+         }, 1000);
+       }
+     </script>
    )
  }
