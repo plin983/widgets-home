@@ -12,7 +12,7 @@ export default function Home() {
       </Head>
 
       <main>
-        <Header title="🎛️ Pei Hua's Widget Hub" />
+        <Header title="🎛️ My Widget Hub" />
         <p className="description">選一個小工具來玩玩 👇</p>
 
         <ul>
