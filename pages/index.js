@@ -6,16 +6,31 @@ export default function Home() {
   return (
     <div className="container">
       <Head>
-        <title>Next.js Starter!</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Pomodoro Timer</title>
+        <style>
+          body { text-align: center; font-family: sans-serif; }
+        </style>
       </Head>
 
-      <main>
-        <Header title="Welcome to my app!" />
-        <p className="description">
-          Get started by editing <code>pages/index.js</code>
-        </p>
-      </main>
+
+        <h1>Pomodoro Timer</h1>
+        <button onclick="startTimer()">Start 25min</button>
+        <p id="timer">25:00</p>
+
+        <script>
+          function startTimer() {
+          let time = 1500;
+          const display = document.getElementById("timer");
+          const interval = setInterval(() => {
+          let minutes = Math.floor(time / 60);
+          let seconds = time % 60;
+          display.innerHTML = `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+          time--;
+          if (time < 0) clearInterval(interval);
+          }, 1000);
+        }
+      </script>
+
 
       <Footer />
     </div>
