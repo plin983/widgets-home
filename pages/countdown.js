@@ -2,7 +2,6 @@ import Head from 'next/head'
 import Link from 'next/link'
 
 export default function Countdown() {
-  // 複製網址功能
   function copyURL() {
     navigator.clipboard.writeText(window.location.href)
       .then(() => alert("網址已複製！"))
@@ -10,19 +9,18 @@ export default function Countdown() {
   }
 
   return (
-    <div>
+    <div className="container">
       <Head>
         <title>Countdown Timer</title>
       </Head>
 
       <h1>⏳ Countdown Timer</h1>
       <p id="countdown">10</p>
-      <button onClick={() => startCountdown()}>Start Countdown</button>
+      <button className="copy-btn" onClick={() => startCountdown()}>Start Countdown</button>
       <br /><br />
 
-      {/* 複製網址按鈕 */}
-      <button onClick={copyURL}>📋 複製這個 Widget 網址</button>
-      
+      <button className="copy-btn" onClick={copyURL}>📋 複製這個 Widget 網址</button>
+
       <p><Link href="/">← Back to home</Link></p>
 
       <script dangerouslySetInnerHTML={{ __html: `

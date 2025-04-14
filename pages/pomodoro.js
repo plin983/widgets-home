@@ -1,9 +1,7 @@
 import Head from 'next/head'
 import Link from 'next/link'
 
-
 export default function Pomodoro() {
-  // 複製網址功能
   function copyURL() {
     navigator.clipboard.writeText(window.location.href)
       .then(() => alert("網址已複製！"))
@@ -11,18 +9,17 @@ export default function Pomodoro() {
   }
 
   return (
-    <div>
+    <div className="container">
       <Head>
         <title>Pomodoro Timer</title>
       </Head>
 
       <h1>🍅 Pomodoro Timer</h1>
       <p id="timer">25:00</p>
-      <button onClick={() => startTimer()}>Start 25min</button>
+      <button className="copy-btn" onClick={() => startTimer()}>Start 25min</button>
       <br /><br />
 
-      {/* 複製網址按鈕 */}
-      <button onClick={copyURL}>📋 複製這個 Widget 網址</button>
+      <button className="copy-btn" onClick={copyURL}>📋 複製這個 Widget 網址</button>
 
       <p><Link href="/">← Back to home</Link></p>
 

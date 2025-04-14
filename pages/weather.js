@@ -1,30 +1,50 @@
-import Head from 'next/head'
-import Link from 'next/link'
+import { useState } from 'react';
 
-export default function Weather() {
-  // 複製網址功能
-  function copyURL() {
-    navigator.clipboard.writeText(window.location.href)
-      .then(() => alert("網址已複製！"))
-      .catch(err => alert("複製失敗: " + err));
-  }
+export default function WeatherWidget() {
+  const [weatherData, setWeatherData] = useState(null);
+  const [city, setCity] = useState('London');
+  const [error, setError] = useState(null);
+
+  const API_KEY = 'YOUR_API_KEY';  // Replace this with your actual API key
+  const BASE_URL = 'https://api.weatherapi.com/v1/current.json';
+
+  const fetchWeather = async () => {
+    setError(null); // Reset error state
+    try {
+      const res = await fetch(`${BASE_URL}?key=${API_KEY}&q=${city}`);
+      const data = await res.json();
+
+      if (data.error) {
+        setError('City not found or invalid.');
+        return;
+      }
+
+      setWeatherData(data);
+    } catch (err) {
+      setError('Error fetching data. Please try again later.');
+    }
+  };
+
   return (
     <div>
-      <Head>
-        <title>Weather Widget</title>
-      </Head>
+      <h1>Weather Widget</h1>
+      <input 
+        type="text" 
+        value={city}
+        onChange={(e) => setCity(e.target.value)} 
+        placeholder="Enter city"
+      />
+      <button onClick={fetchWeather}>Get Weather</button>
 
-      <h1>🌤️ Weather Widget</h1>
+      {error && <p style={{ color: 'red' }}>{error}</p>}
 
-      <iframe 
-        src="https://forecast7.com/en/64d84n147d72/fairbanks/" 
-        frameBorder="0" 
-        width="650" 
-        height="250"
-        allowTransparency="true"
-      ></iframe>
-
-      <p><Link href="/">← Back to home</Link></p>
+      {weatherData && (
+        <div>
+          <h2>{weatherData.location.name}, {weatherData.location.country}</h2>
+          <p>{weatherData.current.temp_c}°C</p>
+          <p>{weatherData.current.condition.text}</p>
+        </div>
+      )}
     </div>
-  )
+  );
 }

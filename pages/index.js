@@ -41,47 +41,6 @@ export default function Home() {
           <button className="copy-btn" onClick={() => copyURL(`${window.location.origin}/weather`)}>📋</button>
         </li>
       </ul>
-
-      <style jsx>{`
-        .container {
-          max-width: 600px;
-          margin: 50px auto;
-          text-align: center;
-        }
-
-        ul {
-          list-style: none;
-          padding: 0;
-        }
-
-        li {
-          margin: 20px 0;
-          font-size: 1.2rem;
-        }
-
-        .copy-btn {
-          margin-left: 10px;
-          background: #f0f0f0;
-          border: none;
-          padding: 5px 10px;
-          border-radius: 8px;
-          cursor: pointer;
-          font-size: 1rem;
-          transition: background 0.2s;
-        }
-
-        .copy-btn:hover {
-          background: #e0e0e0;
-        }
-
-        .copy-status {
-          background-color: #dff0d8;
-          color: #3c763d;
-          padding: 10px;
-          margin-bottom: 20px;
-          border-radius: 5px;
-        }
-      `}</style>
     </div>
   )
 }
