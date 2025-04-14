@@ -1,10 +1,17 @@
 import Head from 'next/head'
 import Link from 'next/link'
+import { useState, useEffect } from 'react'
 
 export default function Countdown() {
-  function copyURL() {
-    navigator.clipboard.writeText(window.location.href)
-      .then(() => alert("網址已複製！"))
+  const [iframeCode, setIframeCode] = useState('')
+
+  useEffect(() => {
+    setIframeCode(`<iframe src="${window.location.origin}/embed/countdown" width="250" height="250"></iframe>`)
+  }, [])
+
+  function copyIframeCode() {
+    navigator.clipboard.writeText(iframeCode)
+      .then(() => alert("Widget 代碼已複製！"))
       .catch(err => alert("複製失敗: " + err));
   }
 
@@ -19,7 +26,14 @@ export default function Countdown() {
       <button className="copy-btn" onClick={() => startCountdown()}>Start Countdown</button>
       <br /><br />
 
-      <button className="copy-btn" onClick={copyURL}>📋 複製這個 Widget 網址</button>
+      <h3>嵌入到 Notion：</h3>
+      <textarea
+        readOnly
+        value={iframeCode}
+        rows="3"
+        style={{ width: '100%', fontSize: '1rem', padding: '10px' }}
+      ></textarea>
+      <button className="copy-btn" onClick={copyIframeCode}>📋 複製這個 Widget</button>
 
       <p><Link href="/">← Back to home</Link></p>
 

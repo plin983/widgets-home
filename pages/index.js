@@ -1,15 +1,29 @@
 import Head from 'next/head'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function Home() {
   const [copyStatus, setCopyStatus] = useState('');
+  const [iframeCodes, setIframeCodes] = useState({
+    pomodoro: '',
+    countdown: '',
+    weather: ''
+  });
 
-  // 複製網址功能
-  function copyURL(url) {
-    navigator.clipboard.writeText(url)
+  // 設定每個 Widget 的 iframe 代碼
+  useEffect(() => {
+    setIframeCodes({
+      pomodoro: `<iframe src="${window.location.origin}/embed/pomodoro" width="250" height="250"></iframe>`,
+      countdown: `<iframe src="${window.location.origin}/embed/countdown" width="250" height="250"></iframe>`,
+      weather: `<iframe src="${window.location.origin}/embed/weather" width="250" height="250"></iframe>`
+    });
+  }, []);
+
+  // 複製代碼功能
+  function copyIframeCode(code) {
+    navigator.clipboard.writeText(code)
       .then(() => {
-        setCopyStatus('網址已複製！');
+        setCopyStatus('Widget 代碼已複製！');
         setTimeout(() => setCopyStatus(''), 2000);  // 2秒後清除提示
       })
       .catch(err => {
@@ -29,16 +43,34 @@ export default function Home() {
       
       <ul>
         <li>
-          <Link href="/pomodoro">🍅 Pomodoro Timer</Link>
-          <button className="copy-btn" onClick={() => copyURL(`${window.location.origin}/pomodoro`)}>📋</button>
+          <h3>Pomodoro Timer 🍅</h3>
+          <textarea 
+            readOnly
+            value={iframeCodes.pomodoro}
+            rows="3"
+            style={{ width: '100%', fontSize: '1rem', padding: '10px' }}
+          ></textarea>
+          <button className="copy-btn" onClick={() => copyIframeCode(iframeCodes.pomodoro)}>📋 複製這個 Widget</button>
         </li>
         <li>
-          <Link href="/countdown">⏳ Countdown Timer</Link>
-          <button className="copy-btn" onClick={() => copyURL(`${window.location.origin}/countdown`)}>📋</button>
+          <h3>Countdown Timer ⏳</h3>
+          <textarea 
+            readOnly
+            value={iframeCodes.countdown}
+            rows="3"
+            style={{ width: '100%', fontSize: '1rem', padding: '10px' }}
+          ></textarea>
+          <button className="copy-btn" onClick={() => copyIframeCode(iframeCodes.countdown)}>📋 複製這個 Widget</button>
         </li>
         <li>
-          <Link href="/weather">🌤️ Weather Widget</Link>
-          <button className="copy-btn" onClick={() => copyURL(`${window.location.origin}/weather`)}>📋</button>
+          <h3>Weather Widget 🌤️</h3>
+          <textarea 
+            readOnly
+            value={iframeCodes.weather}
+            rows="3"
+            style={{ width: '100%', fontSize: '1rem', padding: '10px' }}
+          ></textarea>
+          <button className="copy-btn" onClick={() => copyIframeCode(iframeCodes.weather)}>📋 複製這個 Widget</button>
         </li>
       </ul>
     </div>
