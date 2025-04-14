@@ -12,9 +12,9 @@ import Head from 'next/head'
  
        <main>
          <Header title="Pomodoro Timer" />
-         body { text-align: center; font-family: sans-serif; }
          <p className="description">
-       
+          <button onclick="startTimer()">Start 25min</button>
+          <p id="timer">25:00</p>
          </p>
        </main>
  
