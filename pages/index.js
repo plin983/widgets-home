@@ -12,8 +12,9 @@ import Head from 'next/head'
  
        <main>
          <Header title="Pomodoro Timer" />
+         body { text-align: center; font-family: sans-serif; }
          <p className="description">
-           Pomodoro Timer <code>pages/index.js</code>
+       
          </p>
        </main>
  
