@@ -6,7 +6,7 @@ import Head from 'next/head'
    return (
      <div className="container">
        <Head>
-         <title>Next.js Starter!</title>
+         <title>OnlynOnly Widgets</title>
          <link rel="icon" href="/favicon.ico" />
        </Head>
  
@@ -37,12 +37,6 @@ import Head from 'next/head'
            align-items: center;
          }
  
-         code {
-           background: #fafafa;
-           border-radius: 5px;
-           padding: 0.75rem;
-           font-family: Menlo, Monaco, Lucida Console, Courier New, monospace;
-         }
        `}</style>
  
        <style jsx global>{`
